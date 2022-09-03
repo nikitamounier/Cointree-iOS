@@ -19,6 +19,7 @@ struct TipsView: View {
                 Text(Image(systemName: "arrow.forward"))
               }
               .padding()
+              .padding([.bottom], 20)
               .foregroundColor(.white)
             }
           }
@@ -26,8 +27,8 @@ struct TipsView: View {
     }
     .cornerRadius(30)
     .tabViewStyle(.page(indexDisplayMode: .always))
-    .padding(.horizontal, 30)
-    .frame(height: 150)
+    .padding(.horizontal, 20)
+    .frame(height: 120)
   }
 }
 

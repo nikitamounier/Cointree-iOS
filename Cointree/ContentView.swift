@@ -3,6 +3,7 @@ import Algorithms
 
 struct ContentView: View {
   @State private var showUseCases = true
+  @State private var showSolarView = false
   
   var body: some View {
     NavigationView {
@@ -16,8 +17,8 @@ struct ContentView: View {
             .font(.title2)
             .padding([.leading])
         }
-        .sheetWithDetents(isPresented: .constant(true), detents: [.medium(), .large()], onDismiss: nil) {
-          UseCasesView()
+        .sheetWithDetents(isPresented: .constant(true), detents: [.medium(), .large()], onDismiss: {}) {
+          UseCasesView(showSolarView: $showSolarView, showSheet: $showUseCases)
         }
         .navigationTitle("Cointree")
       }
@@ -28,6 +29,9 @@ struct ContentView: View {
           }
           .foregroundColor(.cointreeGreen)
         }
+      }
+      .background {
+        NavigationLink(isActive: $showSolarView, destination: { InstalledSolar()}, label: {})
       }
     }
   }
@@ -81,6 +85,10 @@ struct ContentView_Previews: PreviewProvider {
 }
 
 struct UseCasesView: View {
+  @Binding var showSolarView: Bool
+  @Binding var showSheet: Bool
+  @Environment(\.dismiss) private var dismiss
+  
   var body: some View {
     VStack(alignment: .leading) {
       Text("You have...")
@@ -92,7 +100,7 @@ struct UseCasesView: View {
       ScrollView {
         LazyVGrid(columns: [.init(), .init()], alignment: .center, spacing: 20) {
           ForEach(UseCase.allCases.indexed(), id: \.1.id) { index, useCase in
-            Button(action: {}) {
+            Button(action: { showSolarView = true; dismiss() }) {
               VStack {
                 Image(useCase: useCase)
                   .resizable()
@@ -118,5 +126,10 @@ struct UseCasesView: View {
       }
     }
     .background(Color.cointreeGreen)
+    .onAppear {
+      if showSolarView {
+        dismiss()
+      }
+    }
   }
 }
