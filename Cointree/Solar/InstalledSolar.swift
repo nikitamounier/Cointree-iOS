@@ -56,7 +56,7 @@ struct InstalledSolar: View {
             }
             .frame(maxWidth: .infinity)
             
-            Button(action: { viewModel.}) {
+            Button(action: { viewModel.receiveMoney() }) {
               Text("Receive money")
                 .font(.title3)
                 .bold()

@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		E417A1E528C2CDFB00047734 /* CointreeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E417A1E428C2CDFB00047734 /* CointreeApp.swift */; };
-		E417A1E728C2CDFB00047734 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E417A1E628C2CDFB00047734 /* ContentView.swift */; };
+		E417A1E728C2CDFB00047734 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E417A1E628C2CDFB00047734 /* HomeView.swift */; };
 		E417A1E928C2CDFC00047734 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E417A1E828C2CDFC00047734 /* Assets.xcassets */; };
 		E417A1EC28C2CDFC00047734 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E417A1EB28C2CDFC00047734 /* Preview Assets.xcassets */; };
 		E417A1F428C2CF5B00047734 /* PresentationDetents.swift in Sources */ = {isa = PBXBuildFile; fileRef = E417A1F328C2CF5B00047734 /* PresentationDetents.swift */; };
@@ -18,13 +18,14 @@
 		E417A1FE28C3031600047734 /* InstalledSolar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E417A1FD28C3031600047734 /* InstalledSolar.swift */; };
 		E417A20028C30E7800047734 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E417A1FF28C30E7800047734 /* ViewModel.swift */; };
 		E417A20328C3254C00047734 /* Parsing in Frameworks */ = {isa = PBXBuildFile; productRef = E417A20228C3254C00047734 /* Parsing */; };
+		E43A135B28C3F226000A7EA8 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E43A135A28C3F226000A7EA8 /* SignUpView.swift */; };
 		E4932C1228C37BF100896CE7 /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = E4932C1128C37BF100896CE7 /* SwiftSoup */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		E417A1E128C2CDFB00047734 /* Cointree.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cointree.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E417A1E428C2CDFB00047734 /* CointreeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CointreeApp.swift; sourceTree = "<group>"; };
-		E417A1E628C2CDFB00047734 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		E417A1E628C2CDFB00047734 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		E417A1E828C2CDFC00047734 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E417A1EB28C2CDFC00047734 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		E417A1F328C2CF5B00047734 /* PresentationDetents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationDetents.swift; sourceTree = "<group>"; };
@@ -32,6 +33,7 @@
 		E417A1FA28C2EF1000047734 /* Tips.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tips.swift; sourceTree = "<group>"; };
 		E417A1FD28C3031600047734 /* InstalledSolar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstalledSolar.swift; sourceTree = "<group>"; };
 		E417A1FF28C30E7800047734 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		E43A135A28C3F226000A7EA8 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,7 +70,8 @@
 			isa = PBXGroup;
 			children = (
 				E417A1E428C2CDFB00047734 /* CointreeApp.swift */,
-				E417A1E628C2CDFB00047734 /* ContentView.swift */,
+				E417A1E628C2CDFB00047734 /* HomeView.swift */,
+				E43A135A28C3F226000A7EA8 /* SignUpView.swift */,
 				E417A1FF28C30E7800047734 /* ViewModel.swift */,
 				E417A1FA28C2EF1000047734 /* Tips.swift */,
 				E417A1FC28C2FED400047734 /* Solar */,
@@ -184,10 +187,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E417A1E728C2CDFB00047734 /* ContentView.swift in Sources */,
+				E417A1E728C2CDFB00047734 /* HomeView.swift in Sources */,
 				E417A1FE28C3031600047734 /* InstalledSolar.swift in Sources */,
 				E417A1FB28C2EF1000047734 /* Tips.swift in Sources */,
 				E417A1E528C2CDFB00047734 /* CointreeApp.swift in Sources */,
+				E43A135B28C3F226000A7EA8 /* SignUpView.swift in Sources */,
 				E417A1F628C2D18E00047734 /* Styleguide.swift in Sources */,
 				E417A1F428C2CF5B00047734 /* PresentationDetents.swift in Sources */,
 				E417A20028C30E7800047734 /* ViewModel.swift in Sources */,

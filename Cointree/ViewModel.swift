@@ -8,11 +8,50 @@ final class CointreeViewModel: ObservableObject {
   var documentScanner: VNDocumentCameraViewController?
   var documentScannerDelegate: DocumentScannerDelegate?
   
-  @Published var dollarAmount: Double = 5652.34
-  @Published var co2removed: Double = 47802
-  @Published var eligibleAmount: Int?
+  @Published var eligibleAmount: Double?
+  
+  var walletAddress: String = "0x83faC02d1DF863D74bB1B0DBef8ae2dDe4543C90"
+  
+  var profile: Profile? {
+    willSet {
+      do {
+        let url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent("cointree-profile")
+        try JSONEncoder().encode(newValue).write(to: url)
+      } catch {
+        print("error encoding")
+      }
+    }
+  }
   
   var kwh: Double?
+  
+  struct Profile: Codable, Equatable, Identifiable {
+    let walletID: String
+    let name: String
+    var dollarsReceived: Double
+    var co2Removed: Double
+    
+    var id: String { walletID }
+  }
+  
+  init() {
+    let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+    let url = paths[0].appendingPathComponent("cointree-profile")
+
+    do {
+      let profile = try JSONDecoder().decode(Profile?.self, from: Data(contentsOf: url))
+      self.profile = profile
+      objectWillChange.send()
+    } catch {
+      print("couldn't decode profile")
+    }
+  }
+  
+  func uploadProfile() {
+    Task {
+      let (_, data) = await URLSession.shared.data(for: .init(url: URL(string: "www.apple.com")!))
+    }
+  }
   
   func startDocumentScanner() {
     self.documentScannerDelegate = DocumentScannerDelegate(
@@ -65,9 +104,12 @@ final class CointreeViewModel: ObservableObject {
   }
   
   private func calculateEligibleAmount(_ kwh: Int) -> Double {
-    0.206 * Double(kwh)
+    0.206 * Double(kwh) * 77.1
   }
   
+  func receiveMoney() {
+    
+  }
 }
 
 
@@ -77,10 +119,10 @@ let invoiceParser = Parse {
   Whitespace()
   Skip {
     OneOf {
-    "kW"
-    "kw"
-    "KW"
-    "Kw"
+      "kW"
+      "kw"
+      "KW"
+      "Kw"
     }
   }
   Skip { Rest() }
@@ -113,3 +155,5 @@ final class DocumentScannerDelegate: NSObject, VNDocumentCameraViewControllerDel
     self.failed(error)
   }
 }
+
+let contractABI = #"[{ "inputs": [], "stateMutability": "nonpayable", "type": "constructor" }, { "inputs": [ { "internalType": "string", "name": "", "type": "string" } ], "name": "balances", "outputs": [ { "internalType": "uint256", "name": "", "type": "uint256" } ], "stateMutability": "view", "type": "function" }, { "inputs": [ { "internalType": "string", "name": "name", "type": "string" } ], "name": "createCompany", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [ { "internalType": "string", "name": "name", "type": "string" } ], "name": "deposit", "outputs": [], "stateMutability": "payable", "type": "function" }, { "inputs": [ { "internalType": "uint256", "name": "amount", "type": "uint256" }, { "internalType": "string", "name": "name", "type": "string" } ], "name": "distribute", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [ { "internalType": "string", "name": "name", "type": "string" } ], "name": "getBalance", "outputs": [ { "internalType": "uint256", "name": "", "type": "uint256" } ], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "getCompanies", "outputs": [ { "internalType": "string[]", "name": "", "type": "string[]" } ], "stateMutability": "view", "type": "function" }, { "stateMutability": "payable", "type": "receive" }]"#

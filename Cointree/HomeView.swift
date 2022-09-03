@@ -1,24 +1,33 @@
 import SwiftUI
 import Algorithms
 
-struct ContentView: View {
+struct HomeView: View {
   @EnvironmentObject private var viewModel: CointreeViewModel
   
   
   @State private var showUseCases = true
   @State private var showSolarView = false
+  @State private var showSignUp = false
   
   var body: some View {
     NavigationView {
       ScrollView {
         VStack(alignment: .leading, spacing: 10) {
           TipsView(suggestions: [.init(prompt: "Help your local concervancy", image: "forest", url: URL(string: "www.apple.com")!), .init(prompt: "Help your local concervancy", image: "forest", url: URL(string: "www.apple.com")!)])
-          Text("Dollars received: $\(viewModel.dollarAmount.formatted(.currency(code: "us")))")
+          Text("Dollars received: $\(viewModel.profile?.dollarsReceived.formatted(.currency(code: "us")) ?? 0.formatted(.currency(code: "us")))")
             .font(.title2)
             .padding([.leading])
-          Text("CO2 removed: \(viewModel.co2removed.formatted(.number)) cubic meters")
+          Text("CO2 removed: \(viewModel.profile?.co2Removed.formatted(.number) ?? 0.formatted(.number)) cubic meters")
             .font(.title2)
             .padding([.leading])
+        }
+        .onAppear {
+          if viewModel.profile == nil {
+            showSignUp = true
+          }
+        }
+        .sheet(isPresented: $showSignUp) {
+          SignUpView()
         }
         .sheetWithDetents(isPresented: .constant(!showSolarView), detents: [.medium(), .large()], onDismiss: {}) {
           UseCasesView(showSolarView: $showSolarView, showSheet: $showUseCases)
@@ -83,7 +92,7 @@ enum UseCase: Int, CaseIterable, Identifiable {
 
 struct ContentView_Previews: PreviewProvider {
   static var previews: some View {
-    ContentView()
+    HomeView()
       .environmentObject(CointreeViewModel())
   }
 }
