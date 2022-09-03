@@ -2,6 +2,9 @@ import SwiftUI
 import Algorithms
 
 struct ContentView: View {
+  @EnvironmentObject private var viewModel: CointreeViewModel
+  
+  
   @State private var showUseCases = true
   @State private var showSolarView = false
   
@@ -10,14 +13,14 @@ struct ContentView: View {
       ScrollView {
         VStack(alignment: .leading, spacing: 10) {
           TipsView(suggestions: [.init(prompt: "Help your local concervancy", image: "forest", url: URL(string: "www.apple.com")!), .init(prompt: "Help your local concervancy", image: "forest", url: URL(string: "www.apple.com")!)])
-          Text("Dollars received: $2343.34")
+          Text("Dollars received: $\(viewModel.dollarAmount.formatted(.currency(code: "us")))")
             .font(.title2)
             .padding([.leading])
-          Text("CO2 removed: 24398 cubic meters")
+          Text("CO2 removed: \(viewModel.co2removed.formatted(.number)) cubic meters")
             .font(.title2)
             .padding([.leading])
         }
-        .sheetWithDetents(isPresented: .constant(true), detents: [.medium(), .large()], onDismiss: {}) {
+        .sheetWithDetents(isPresented: .constant(!showSolarView), detents: [.medium(), .large()], onDismiss: {}) {
           UseCasesView(showSolarView: $showSolarView, showSheet: $showUseCases)
         }
         .navigationTitle("Cointree")
@@ -81,6 +84,7 @@ enum UseCase: Int, CaseIterable, Identifiable {
 struct ContentView_Previews: PreviewProvider {
   static var previews: some View {
     ContentView()
+      .environmentObject(CointreeViewModel())
   }
 }
 

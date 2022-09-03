@@ -12,6 +12,7 @@ struct CointreeApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+            .environmentObject(CointreeViewModel())
         }
     }
 }
