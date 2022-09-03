@@ -4,7 +4,6 @@ struct SignUpView: View {
   @EnvironmentObject private var viewModel: CointreeViewModel
   @Environment(\.presentationMode) private var presentationMode
   
-  @State private var name: String = ""
   @State private var walletID: String = ""
   
   var body: some View {
@@ -13,20 +12,15 @@ struct SignUpView: View {
         .font(.largeTitle)
         .bold()
         .foregroundColor(.white)
-        .padding(.bottom)
-      Text("Be more sustainable. Get paid")
+        .padding([.horizontal, .bottom])
+        .multilineTextAlignment(.center)
+      Text("Go green. Get paid")
         .font(.title2)
         .bold()
         .foregroundColor(.white)
-        .padding(.bottom, 100)
-      TextField("Name", text: $name)
-        .padding()
-        .background {
-          RoundedRectangle(cornerRadius: 20)
-            .foregroundColor(.white)
-            .opacity(0.3)
-        }
         .padding(.horizontal)
+        .padding(.bottom, 100)
+        .multilineTextAlignment(.center)
       SecureField("Wallet ID", text: $walletID)
         .padding()
         .background {
@@ -36,9 +30,9 @@ struct SignUpView: View {
         }
         .padding(.horizontal)
       Button {
-        guard !name.isEmpty, !walletID.isEmpty else { return }
+        guard !walletID.isEmpty else { return }
         print("hi")
-        viewModel.profile = .init(walletID: walletID, name: name, dollarsReceived: 0, co2Removed: 0)
+        viewModel.profile = .init(walletID: walletID, dollarsReceived: 0, co2Removed: 0)
         viewModel.uploadProfile()
         print(viewModel.profile)
       } label: {

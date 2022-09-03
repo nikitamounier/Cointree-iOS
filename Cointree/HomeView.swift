@@ -8,6 +8,9 @@ struct HomeView: View {
   @State private var showUseCases = true
   @State private var showSolarView = false
   @State private var showSignUp = false
+  @State private var showEditWallet = false
+  
+  @State private var editWalletText: String? = nil
   
   var body: some View {
     NavigationView {
@@ -29,6 +32,13 @@ struct HomeView: View {
         .sheet(isPresented: $showSignUp) {
           SignUpView()
         }
+        .textFieldAlert(isPresented: $showEditWallet, content: {
+          TextFieldAlert(title: "Change Wallet", message: "Change your wallet address here", text: $editWalletText)
+        })
+        .onSubmit(of: .text) {
+          guard let editWalletText, !editWalletText.isEmpty else { return }
+          viewModel.profile?.walletID = editWalletText
+        }
         .sheetWithDetents(isPresented: .constant(!showSolarView), detents: [.medium(), .large()], onDismiss: {}) {
           UseCasesView(showSolarView: $showSolarView, showSheet: $showUseCases)
         }
@@ -36,9 +46,22 @@ struct HomeView: View {
       }
       .toolbar {
         ToolbarItem(placement: .navigationBarTrailing) {
-          Button(action: {}) {
-            Image(systemName: "gearshape.fill")
-          }
+          Menu(content: {
+            Group {
+              if let walletID = viewModel.profile?.walletID {
+                Section {
+                  Text("Wallet: \(String(walletID.prefix(6)))...\(String(walletID.suffix(4)))")
+                }
+                Section {
+                  Button(action: { showEditWallet = true }) {
+                    Label("Change wallet", systemImage: "pencil.circle")
+                  }
+                }
+              }
+            }
+          }, label: {
+            Image(systemName: "person.circle")
+          })
           .foregroundColor(.cointreeGreen)
         }
       }

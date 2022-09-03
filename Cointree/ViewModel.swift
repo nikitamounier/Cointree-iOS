@@ -26,8 +26,7 @@ final class CointreeViewModel: ObservableObject {
   var kwh: Double?
   
   struct Profile: Codable, Equatable, Identifiable {
-    let walletID: String
-    let name: String
+    var walletID: String
     var dollarsReceived: Double
     var co2Removed: Double
     
@@ -49,7 +48,8 @@ final class CointreeViewModel: ObservableObject {
   
   func uploadProfile() {
     Task {
-      let (_, data) = await URLSession.shared.data(for: .init(url: URL(string: "www.apple.com")!))
+      let (_, data) = try await URLSession.shared.data(for: .init(url: URL(string: "www.apple.com")!))
+      print(data)
     }
   }
   
@@ -108,7 +108,9 @@ final class CointreeViewModel: ObservableObject {
   }
   
   func receiveMoney() {
-    
+    Task {
+      
+    }
   }
 }
 

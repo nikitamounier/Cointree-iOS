@@ -19,6 +19,7 @@
 		E417A20028C30E7800047734 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E417A1FF28C30E7800047734 /* ViewModel.swift */; };
 		E417A20328C3254C00047734 /* Parsing in Frameworks */ = {isa = PBXBuildFile; productRef = E417A20228C3254C00047734 /* Parsing */; };
 		E43A135B28C3F226000A7EA8 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E43A135A28C3F226000A7EA8 /* SignUpView.swift */; };
+		E43A135D28C414D3000A7EA8 /* TextFieldAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = E43A135C28C414D3000A7EA8 /* TextFieldAlert.swift */; };
 		E4932C1228C37BF100896CE7 /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = E4932C1128C37BF100896CE7 /* SwiftSoup */; };
 /* End PBXBuildFile section */
 
@@ -34,6 +35,7 @@
 		E417A1FD28C3031600047734 /* InstalledSolar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstalledSolar.swift; sourceTree = "<group>"; };
 		E417A1FF28C30E7800047734 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		E43A135A28C3F226000A7EA8 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
+		E43A135C28C414D3000A7EA8 /* TextFieldAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldAlert.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +97,7 @@
 			children = (
 				E417A1F328C2CF5B00047734 /* PresentationDetents.swift */,
 				E417A1F528C2D18E00047734 /* Styleguide.swift */,
+				E43A135C28C414D3000A7EA8 /* TextFieldAlert.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -187,6 +190,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E43A135D28C414D3000A7EA8 /* TextFieldAlert.swift in Sources */,
 				E417A1E728C2CDFB00047734 /* HomeView.swift in Sources */,
 				E417A1FE28C3031600047734 /* InstalledSolar.swift in Sources */,
 				E417A1FB28C2EF1000047734 /* Tips.swift in Sources */,
