@@ -11,6 +11,10 @@
 		E417A1E728C2CDFB00047734 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E417A1E628C2CDFB00047734 /* ContentView.swift */; };
 		E417A1E928C2CDFC00047734 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E417A1E828C2CDFC00047734 /* Assets.xcassets */; };
 		E417A1EC28C2CDFC00047734 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E417A1EB28C2CDFC00047734 /* Preview Assets.xcassets */; };
+		E417A1F428C2CF5B00047734 /* PresentationDetents.swift in Sources */ = {isa = PBXBuildFile; fileRef = E417A1F328C2CF5B00047734 /* PresentationDetents.swift */; };
+		E417A1F628C2D18E00047734 /* Styleguide.swift in Sources */ = {isa = PBXBuildFile; fileRef = E417A1F528C2D18E00047734 /* Styleguide.swift */; };
+		E417A1F928C2DFA700047734 /* Algorithms in Frameworks */ = {isa = PBXBuildFile; productRef = E417A1F828C2DFA700047734 /* Algorithms */; };
+		E417A1FB28C2EF1000047734 /* Tips.swift in Sources */ = {isa = PBXBuildFile; fileRef = E417A1FA28C2EF1000047734 /* Tips.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +23,9 @@
 		E417A1E628C2CDFB00047734 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		E417A1E828C2CDFC00047734 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E417A1EB28C2CDFC00047734 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		E417A1F328C2CF5B00047734 /* PresentationDetents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationDetents.swift; sourceTree = "<group>"; };
+		E417A1F528C2D18E00047734 /* Styleguide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Styleguide.swift; sourceTree = "<group>"; };
+		E417A1FA28C2EF1000047734 /* Tips.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tips.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -26,6 +33,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E417A1F928C2DFA700047734 /* Algorithms in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -53,6 +61,9 @@
 			children = (
 				E417A1E428C2CDFB00047734 /* CointreeApp.swift */,
 				E417A1E628C2CDFB00047734 /* ContentView.swift */,
+				E417A1FA28C2EF1000047734 /* Tips.swift */,
+				E417A1FC28C2FED400047734 /* Solar */,
+				E417A1F228C2CF4E00047734 /* Helpers */,
 				E417A1E828C2CDFC00047734 /* Assets.xcassets */,
 				E417A1EA28C2CDFC00047734 /* Preview Content */,
 			);
@@ -65,6 +76,22 @@
 				E417A1EB28C2CDFC00047734 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		E417A1F228C2CF4E00047734 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				E417A1F328C2CF5B00047734 /* PresentationDetents.swift */,
+				E417A1F528C2D18E00047734 /* Styleguide.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		E417A1FC28C2FED400047734 /* Solar */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Solar;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -83,6 +110,9 @@
 			dependencies = (
 			);
 			name = Cointree;
+			packageProductDependencies = (
+				E417A1F828C2DFA700047734 /* Algorithms */,
+			);
 			productName = Cointree;
 			productReference = E417A1E128C2CDFB00047734 /* Cointree.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +141,9 @@
 				Base,
 			);
 			mainGroup = E417A1D828C2CDFB00047734;
+			packageReferences = (
+				E417A1F728C2DFA600047734 /* XCRemoteSwiftPackageReference "swift-algorithms" */,
+			);
 			productRefGroup = E417A1E228C2CDFB00047734 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -138,7 +171,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				E417A1E728C2CDFB00047734 /* ContentView.swift in Sources */,
+				E417A1FB28C2EF1000047734 /* Tips.swift in Sources */,
 				E417A1E528C2CDFB00047734 /* CointreeApp.swift in Sources */,
+				E417A1F628C2D18E00047734 /* Styleguide.swift in Sources */,
+				E417A1F428C2CF5B00047734 /* PresentationDetents.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -341,6 +377,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		E417A1F728C2DFA600047734 /* XCRemoteSwiftPackageReference "swift-algorithms" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-algorithms";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		E417A1F828C2DFA700047734 /* Algorithms */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E417A1F728C2DFA600047734 /* XCRemoteSwiftPackageReference "swift-algorithms" */;
+			productName = Algorithms;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = E417A1D928C2CDFB00047734 /* Project object */;
 }
