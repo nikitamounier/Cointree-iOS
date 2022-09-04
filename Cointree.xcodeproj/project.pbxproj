@@ -20,6 +20,7 @@
 		E417A20328C3254C00047734 /* Parsing in Frameworks */ = {isa = PBXBuildFile; productRef = E417A20228C3254C00047734 /* Parsing */; };
 		E43A135B28C3F226000A7EA8 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E43A135A28C3F226000A7EA8 /* SignUpView.swift */; };
 		E43A135D28C414D3000A7EA8 /* TextFieldAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = E43A135C28C414D3000A7EA8 /* TextFieldAlert.swift */; };
+		E43A136028C446E3000A7EA8 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = E43A135F28C446E3000A7EA8 /* Alamofire */; };
 		E4932C1228C37BF100896CE7 /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = E4932C1128C37BF100896CE7 /* SwiftSoup */; };
 /* End PBXBuildFile section */
 
@@ -44,6 +45,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E417A1F928C2DFA700047734 /* Algorithms in Frameworks */,
+				E43A136028C446E3000A7EA8 /* Alamofire in Frameworks */,
 				E417A20328C3254C00047734 /* Parsing in Frameworks */,
 				E4932C1228C37BF100896CE7 /* SwiftSoup in Frameworks */,
 			);
@@ -130,6 +132,7 @@
 				E417A1F828C2DFA700047734 /* Algorithms */,
 				E417A20228C3254C00047734 /* Parsing */,
 				E4932C1128C37BF100896CE7 /* SwiftSoup */,
+				E43A135F28C446E3000A7EA8 /* Alamofire */,
 			);
 			productName = Cointree;
 			productReference = E417A1E128C2CDFB00047734 /* Cointree.app */;
@@ -163,6 +166,7 @@
 				E417A1F728C2DFA600047734 /* XCRemoteSwiftPackageReference "swift-algorithms" */,
 				E417A20128C3254C00047734 /* XCRemoteSwiftPackageReference "swift-parsing" */,
 				E4932C1028C37BF100896CE7 /* XCRemoteSwiftPackageReference "SwiftSoup" */,
+				E43A135E28C446E3000A7EA8 /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			productRefGroup = E417A1E228C2CDFB00047734 /* Products */;
 			projectDirPath = "";
@@ -421,6 +425,14 @@
 				minimumVersion = 0.9.2;
 			};
 		};
+		E43A135E28C446E3000A7EA8 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 		E4932C1028C37BF100896CE7 /* XCRemoteSwiftPackageReference "SwiftSoup" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/scinfu/SwiftSoup";
@@ -441,6 +453,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = E417A20128C3254C00047734 /* XCRemoteSwiftPackageReference "swift-parsing" */;
 			productName = Parsing;
+		};
+		E43A135F28C446E3000A7EA8 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E43A135E28C446E3000A7EA8 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
 		};
 		E4932C1128C37BF100896CE7 /* SwiftSoup */ = {
 			isa = XCSwiftPackageProductDependency;

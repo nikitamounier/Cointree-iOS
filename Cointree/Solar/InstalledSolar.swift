@@ -2,6 +2,7 @@ import SwiftUI
 
 struct InstalledSolar: View {
   @EnvironmentObject private var viewModel: CointreeViewModel
+  @Environment(\.presentationMode) private var presentationMode
   
   var body: some View {
     ScrollView {
@@ -56,7 +57,7 @@ struct InstalledSolar: View {
             }
             .frame(maxWidth: .infinity)
             
-            Button(action: { viewModel.receiveMoney() }) {
+            Button(action: { Task { await viewModel.receiveMoney() }; presentationMode.wrappedValue.dismiss() }) {
               Text("Receive money")
                 .font(.title3)
                 .bold()

@@ -33,7 +33,7 @@ struct SignUpView: View {
         guard !walletID.isEmpty else { return }
         print("hi")
         viewModel.profile = .init(walletID: walletID, dollarsReceived: 0, co2Removed: 0)
-        viewModel.uploadProfile()
+        presentationMode.wrappedValue.dismiss()
         print(viewModel.profile)
       } label: {
         Text("Sign up")

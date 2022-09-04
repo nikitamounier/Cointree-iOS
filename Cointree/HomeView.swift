@@ -32,14 +32,11 @@ struct HomeView: View {
         .sheet(isPresented: $showSignUp) {
           SignUpView()
         }
-        .textFieldAlert(isPresented: $showEditWallet, content: {
-          TextFieldAlert(title: "Change Wallet", message: "Change your wallet address here", text: $editWalletText)
-        })
         .onSubmit(of: .text) {
           guard let editWalletText, !editWalletText.isEmpty else { return }
           viewModel.profile?.walletID = editWalletText
         }
-        .sheetWithDetents(isPresented: .constant(!showSolarView), detents: [.medium(), .large()], onDismiss: {}) {
+        .sheetWithDetents(isPresented: .constant(!showSolarView && !showEditWallet), detents: [.medium(), .large()], onDismiss: {}) {
           UseCasesView(showSolarView: $showSolarView, showSheet: $showUseCases)
         }
         .navigationTitle("Cointree")
@@ -68,7 +65,32 @@ struct HomeView: View {
       .background {
         NavigationLink(isActive: $showSolarView, destination: { InstalledSolar()}, label: {})
       }
+      .background {
+        NavigationLink(
+          isActive: $showEditWallet,
+          destination: { ChangeWalletView(onSubmit: { viewModel.profile?.walletID = $0; showEditWallet = false;  }) },
+          label: {}
+        )
+      }
     }
+  }
+}
+
+struct ChangeWalletView: View {
+  let onSubmit: (String) -> Void
+  @State private var newWallet = ""
+  
+  var body: some View {
+    Form {
+      Section {
+        SecureField("New wallet", text: $newWallet, prompt: Text("Add your new wallet here"))
+        Button("Submit") { onSubmit(newWallet) }
+      }
+    }
+    .onSubmit(of: .text) {
+      onSubmit(newWallet)
+    }
+    .navigationTitle(Text("Change wallet"))
   }
 }
 

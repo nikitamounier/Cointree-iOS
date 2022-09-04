@@ -1,3 +1,4 @@
+import Alamofire
 import Parsing
 import SwiftUI
 import UIKit
@@ -38,18 +39,11 @@ final class CointreeViewModel: ObservableObject {
     let url = paths[0].appendingPathComponent("cointree-profile")
 
     do {
-      let profile = try JSONDecoder().decode(Profile?.self, from: Data(contentsOf: url))
+      let profile = try JSONDecoder().decode(Profile.self, from: Data(contentsOf: url))
       self.profile = profile
       objectWillChange.send()
     } catch {
       print("couldn't decode profile")
-    }
-  }
-  
-  func uploadProfile() {
-    Task {
-      let (_, data) = try await URLSession.shared.data(for: .init(url: URL(string: "www.apple.com")!))
-      print(data)
     }
   }
   
@@ -108,9 +102,36 @@ final class CointreeViewModel: ObservableObject {
   }
   
   func receiveMoney() {
-    Task {
-      
+    
+    let job = ["wallet": "4831843023948", "amount": "23", "jobDescription": "Solar panel"]
+    
+    var semaphore = DispatchSemaphore (value: 0)
+
+    let parameters = "{\n    \"wallet\": \"\(profile!.walletID)\",\n    \"amount\": \"\(Int(eligibleAmount!))\",\n    \"jobDescription\": \"Solar panel installation\"\n}"
+    let postData = parameters.data(using: .utf8)
+
+    var request = URLRequest(url: URL(string: "https://jobs-cointree.herokuapp.com/job/create")!,timeoutInterval: Double.infinity)
+    request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+
+    request.httpMethod = "POST"
+    request.httpBody = postData
+
+    let task = URLSession.shared.dataTask(with: request) { data, response, error in
+      guard let data = data else {
+        print(String(describing: error))
+        semaphore.signal()
+        return
+      }
+      print(String(data: data, encoding: .utf8)!)
+      semaphore.signal()
     }
+
+    task.resume()
+    semaphore.wait()
+
+    
+    self.profile?.dollarsReceived += eligibleAmount!
+    Task { @MainActor in eligibleAmount = nil }
   }
 }
 
@@ -159,3 +180,9 @@ final class DocumentScannerDelegate: NSObject, VNDocumentCameraViewControllerDel
 }
 
 let contractABI = #"[{ "inputs": [], "stateMutability": "nonpayable", "type": "constructor" }, { "inputs": [ { "internalType": "string", "name": "", "type": "string" } ], "name": "balances", "outputs": [ { "internalType": "uint256", "name": "", "type": "uint256" } ], "stateMutability": "view", "type": "function" }, { "inputs": [ { "internalType": "string", "name": "name", "type": "string" } ], "name": "createCompany", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [ { "internalType": "string", "name": "name", "type": "string" } ], "name": "deposit", "outputs": [], "stateMutability": "payable", "type": "function" }, { "inputs": [ { "internalType": "uint256", "name": "amount", "type": "uint256" }, { "internalType": "string", "name": "name", "type": "string" } ], "name": "distribute", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [ { "internalType": "string", "name": "name", "type": "string" } ], "name": "getBalance", "outputs": [ { "internalType": "uint256", "name": "", "type": "uint256" } ], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "getCompanies", "outputs": [ { "internalType": "string[]", "name": "", "type": "string[]" } ], "stateMutability": "view", "type": "function" }, { "stateMutability": "payable", "type": "receive" }]"#
+
+struct Job: Codable {
+  let wallet: String
+  let amount: Int
+  let jobDescription: String
+}
