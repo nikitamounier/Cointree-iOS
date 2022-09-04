@@ -11,8 +11,6 @@ final class CointreeViewModel: ObservableObject {
   
   @Published var eligibleAmount: Double?
   
-  var walletAddress: String = "0x83faC02d1DF863D74bB1B0DBef8ae2dDe4543C90"
-  
   var profile: Profile? {
     willSet {
       do {
